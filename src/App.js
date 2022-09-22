@@ -22,59 +22,113 @@ function App() {
   const randomQuote =
     quotesData.quotes[Math.floor(Math.random() * quotesData.quotes.length)];
 
-  const [quote, setQuote] = useState(randomQuote);
 
-  console.log(randomQuote);
+   const randomColor =
+       colors[Math.floor(Math.random() * colors.length)];
+
+
+  const [quote, setQuote] = useState(randomQuote);
+  const [bground, setBground] = useState(randomColor);
+
 
   const handleQuoteChange = () => {
     setQuote(
-      quotesData.quotes[Math.floor(Math.random() * quotesData.quotes.length)]
+      quotesData.quotes[Math.floor(Math.random() * quotesData.quotes.length)],
     );
+    setBground(
+        colors[Math.floor(Math.random() * colors.length)]
+      );
   };
 
+  console.log(quote)
   return (
     <div
       style={{
-        backgroundColor: colors[3],
+        backgroundColor: bground,
         width: "100vw",
         height: "100vh",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+         transition: "all 1s ease",
+         WebkitTransition: "all 1s ease",
+         MozTransition: "all 1s ease"
+
       }}
       className="App"
     >
+            <div>
+                <link
+                    rel="stylesheet"
+                    href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+                    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+                    crossOrigin="anonymous"
+                />
+            </div>
       <div
         style={{
-          width: "50%",
-          borderStyle: "solid",
-          borderRadius: "10px",
+          position:"relative",
+          width: "40%",
+          borderStyle: "solid white",
+          borderRadius: "5px",
           height: "40%",
           display: "flex",
+          backgroundColor: "white",
           flexDirection: "column",
         }}
         className="quotes-container"
       >
-        <div style={{ height: "70%" }} className="quotes">
-          {quote.quote} + + + {quote.author}
+            <div style={{
+                    position:"relative",
+                    height: "70%",
+                    padding: "4rem ",
+                    color:bground,
+                    fontSize:"2rem",
+                    transition: "all 1s ease",
+                    WebkitTransition: "all 1s ease",
+                    MozTransition: "all 1s ease"
+            }} className="quotes">
+
+          "" {quote.quote}
+
         </div>
-        <div
-          style={{
-            height: "30%",
-            display: "flex",
-            justifyContent: "space-between",
-            padding: "1rem",
-          }}
-          className="actions"
-        >
+
+
+          <div className="quotes"  style={{
+              position:"relative",
+              display: "flex",
+              justifyContent: "center",
+              color: bground,
+              transition: "all 1s ease",
+              WebkitTransition: "all 1s ease",
+              MozTransition: "all 1s ease"
+          }}>
+              {quote.author}
+          </div>
+            <div
+              style={{
+                height: "30%",
+                display: "flex",
+                justifyContent: "space-between",
+                padding: "1rem",
+              }}
+              className="actions"
+            >
           <div
             className="links"
-            style={{ display: "flex", justifyContent: "space-between" }}
+            style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding:"1rem"}}
           >
-            <a style={{ marginRight: "1rem" }}>t</a>
-            <a>tw</a>
+            <a className="btn" style={{ marginRight: "1rem", color:"white", backgroundColor: bground }}>instagram</a>
+            <a className="btn" style={{ marginRight: "1rem", color:"white", backgroundColor: bground }}>whatsapp</a>
           </div>
-          <button onClick={handleQuoteChange}>New Quote</button>
+          <button className="btn" style={{
+              backgroundColor: bground,
+              color: "white",
+              padding: "1rem",
+              transition: "all 1s ease",
+              WebkitTransition: "all 1s ease",
+              MozTransition: "all 1s ease"
+          }} onClick={handleQuoteChange}>New Quote</button>
         </div>
       </div>
     </div>
